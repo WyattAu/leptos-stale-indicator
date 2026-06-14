@@ -1,0 +1,19 @@
+[package]
+name = "leptos-stale-indicator"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Data freshness indicator for Leptos — shows LIVE/DATA STALE status based on fetch timestamps"
+repository = "https://github.com/WyattAu/leptos-stale-indicator"
+keywords = ["leptos", "stale", "freshness", "indicator", "dashboard"]
+categories = ["wasm", "gui", "web-programming"]
+
+[dependencies]
+leptos = { version = "0.8", default-features = false }
+gloo-timers = { version = "0.3", features = ["futures"] }
+js-sys = "0.3"
+
+[features]
+hydrate = ["leptos/hydrate"]
+ssr = ["leptos/ssr"]
+default = ["hydrate"]
