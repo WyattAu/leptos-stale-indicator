@@ -60,3 +60,78 @@ pub fn use_data_freshness(
     })
     .into()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn live_display_text() {
+        assert_eq!(DataFreshness::Live.display_text(), "LIVE");
+    }
+
+    #[test]
+    fn stale_display_text() {
+        let stale = DataFreshness::Stale { minutes: 5 };
+        assert_eq!(stale.display_text(), "DATA STALE \u{00b7} 5m ago");
+    }
+
+    #[test]
+    fn stale_zero_minutes() {
+        let stale = DataFreshness::Stale { minutes: 0 };
+        assert_eq!(stale.display_text(), "DATA STALE \u{00b7} 0m ago");
+    }
+
+    #[test]
+    fn stale_large_minutes() {
+        let stale = DataFreshness::Stale { minutes: 1440 };
+        assert_eq!(stale.display_text(), "DATA STALE \u{00b7} 1440m ago");
+    }
+
+    #[test]
+    fn live_css_class() {
+        assert_eq!(
+            DataFreshness::Live.css_class(),
+            "status-dot status-dot--live"
+        );
+    }
+
+    #[test]
+    fn stale_css_class() {
+        let stale = DataFreshness::Stale { minutes: 10 };
+        assert_eq!(
+            stale.css_class(),
+            "status-dot status-dot--stale"
+        );
+    }
+
+    #[test]
+    fn live_eq_live() {
+        assert_eq!(DataFreshness::Live, DataFreshness::Live);
+    }
+
+    #[test]
+    fn stale_eq_stale() {
+        assert_eq!(
+            DataFreshness::Stale { minutes: 5 },
+            DataFreshness::Stale { minutes: 5 }
+        );
+    }
+
+    #[test]
+    fn stale_ne_live() {
+        assert_ne!(
+            DataFreshness::Stale { minutes: 5 },
+            DataFreshness::Live
+        );
+    }
+
+    #[test]
+    fn stale_different_minutes_ne() {
+        assert_ne!(
+            DataFreshness::Stale { minutes: 5 },
+            DataFreshness::Stale { minutes: 10 }
+        );
+    }
+
+}
