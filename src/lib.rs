@@ -19,6 +19,8 @@
 //! }
 //! ```
 
+#![deny(missing_docs)]
+
 mod indicator;
 mod freshness;
 

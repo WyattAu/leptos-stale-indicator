@@ -9,7 +9,10 @@ pub enum DataFreshness {
     /// All data is fresh (max age < threshold).
     Live,
     /// Some data is stale (max age >= threshold).
-    Stale { minutes: u32 },
+    Stale {
+        /// Minutes since the oldest data was fetched.
+        minutes: u32,
+    },
 }
 
 impl DataFreshness {
