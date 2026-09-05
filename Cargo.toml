@@ -10,7 +10,7 @@ categories = ["wasm", "gui", "web-programming"]
 
 [dependencies]
 leptos = { version = "0.8", default-features = false }
-gloo-timers = { version = "0.3", features = ["futures"] }
+gloo-timers = { version = "0.4", features = ["futures"] }
 js-sys = "0.3"
 
 [features]
