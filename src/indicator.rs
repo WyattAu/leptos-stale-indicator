@@ -3,7 +3,7 @@
 use leptos::prelude::*;
 use std::collections::HashMap;
 
-use crate::freshness::{DataFreshness, compute_freshness};
+use crate::freshness::{compute_freshness, DataFreshness};
 
 /// A data freshness indicator component.
 ///
@@ -27,10 +27,6 @@ pub fn StaleIndicator(
 
     #[cfg(feature = "hydrate")]
     {
-        let timestamps = timestamps.clone();
-        let set_freshness = set_freshness.clone();
-        let threshold = threshold.clone();
-
         // Initial computation
         let ts = timestamps.get();
         set_freshness.set(compute_freshness(&ts, threshold));

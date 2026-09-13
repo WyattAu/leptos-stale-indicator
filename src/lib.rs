@@ -21,8 +21,8 @@
 
 #![deny(missing_docs)]
 
-mod indicator;
 mod freshness;
+mod indicator;
 
+pub use freshness::{use_data_freshness, DataFreshness};
 pub use indicator::StaleIndicator;
-pub use freshness::{DataFreshness, use_data_freshness};

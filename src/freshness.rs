@@ -1,7 +1,7 @@
 //! Data freshness computation.
 
-use std::collections::HashMap;
 use leptos::prelude::*;
+use std::collections::HashMap;
 
 /// The freshness state of fetched data.
 #[derive(Clone, Debug, PartialEq)]
@@ -58,10 +58,7 @@ pub fn use_data_freshness(
     timestamps: Signal<HashMap<String, f64>>,
     threshold: f64,
 ) -> Signal<DataFreshness> {
-    Memo::new(move |_| {
-        compute_freshness(&timestamps.get(), threshold)
-    })
-    .into()
+    Memo::new(move |_| compute_freshness(&timestamps.get(), threshold)).into()
 }
 
 #[cfg(test)]
@@ -102,10 +99,7 @@ mod tests {
     #[test]
     fn stale_css_class() {
         let stale = DataFreshness::Stale { minutes: 10 };
-        assert_eq!(
-            stale.css_class(),
-            "status-dot status-dot--stale"
-        );
+        assert_eq!(stale.css_class(), "status-dot status-dot--stale");
     }
 
     #[test]
@@ -123,10 +117,7 @@ mod tests {
 
     #[test]
     fn stale_ne_live() {
-        assert_ne!(
-            DataFreshness::Stale { minutes: 5 },
-            DataFreshness::Live
-        );
+        assert_ne!(DataFreshness::Stale { minutes: 5 }, DataFreshness::Live);
     }
 
     #[test]
@@ -136,5 +127,4 @@ mod tests {
             DataFreshness::Stale { minutes: 10 }
         );
     }
-
 }
