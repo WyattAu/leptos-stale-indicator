@@ -1,6 +1,6 @@
 # leptos-stale-indicator
 
-Data freshness indicator for Leptos — shows LIVE/DATA STALE status based on fetch timestamps.
+Data freshness indicator for Leptos; shows LIVE/DATA STALE status based on fetch timestamps.
 
 ## Features
 
@@ -95,8 +95,8 @@ The component applies these classes for styling:
 leptos-stale-indicator = { version = "0.1", features = ["hydrate"] }
 ```
 
-- `hydrate` (default) — Client-side hydration support
-- `ssr` — Server-side rendering support
+- `hydrate` (default); Client-side hydration support
+- `ssr`; Server-side rendering support
 
 ## License
 
